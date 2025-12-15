@@ -36,7 +36,7 @@ int dup2(int oldfd, int newfd);
 **pipe()**:
 
 ```C
-int pipe(int filedes[2]);
+int pipe(int pipefd[2]);
 ```
 - `pipe()` creates a pipe, a unidirectional data channel that can be used for interprocess communication
 - The array `pipefd` is used to return two file descriptors referring to the ends of the pipe:

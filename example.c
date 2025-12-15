@@ -20,12 +20,17 @@
 //     return (0);
 // }
 
-int main()
+int main(int ac, char **av , char **envp)
 {
     int fd[2];
     pid_t pid;
     char buffer[13];
+	int		i = -1;
 
+	(void)ac;
+	(void)av;
+	while (envp[++i][0] != 0)
+		printf("%s\n", envp[i]);
     if (pipe(fd) == -1)
     {
         perror("pipe");

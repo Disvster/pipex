@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 20:49:48 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/10 22:08:39 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/12 13:31:01 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp)
 {
 	pipex->infile = open(av[1], O_RDONLY);
-	pipex->infile = open(av[2], O);
+	pipex->outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	pipex->argc = ac;
+	pipex->argv = av;
+	pipex->envp = envp;
+	pipex->cmd_count = ac - 3;
+	pipex->cmds = ft_calloc(pipex->cmd_count, sizeof(t_cmd));
+	// if (!pipex->cmds)// TODO:
 }
 
 int	main(int ac, char **av, char **envp)
@@ -29,5 +35,7 @@ int	main(int ac, char **av, char **envp)
 		return (1);
 	}
 	ft_bzero(&pipex, sizeof(t_pipex));
+	init_pipex(&pipex,  ac, av, envp);
+	parse_commands(&pipex);
 	return (0);
 }

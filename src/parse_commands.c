@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 13:01:53 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/16 19:42:22 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/16 20:05:03 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ char	*pipex_strjoin(char *path, char *cmd)
 	new_cmd = ft_calloc(len, sizeof(char));
 	if (!new_cmd)
 		return (NULL);
-	// ft_strlcpy(new_cmd, path, ft_strlen(path));
-	new_cmd[ft_strlcpy(new_cmd, path, ft_strlen(path))] = '/';// WARNING: this might not work
-	// new_cmd[ft_strlen(path)] = '/';
-	ft_strlcpy(new_cmd + ft_strlen(path) + 1, cmd, ft_strlen(cmd));
+	ft_strlcpy(new_cmd, path, ft_strlen(path) + 1);
+	// new_cmd[ft_strlcpy(new_cmd, path, ft_strlen(path))] = '/';// WARNING: this might not work
+	new_cmd[ft_strlen(new_cmd)] = '/';
+	ft_strlcpy(new_cmd + ft_strlen(path) + 1, cmd, ft_strlen(cmd) + 1);
 	ft_printf("new_cmd = %s\n", new_cmd);// HACK: db
 	return (new_cmd);
 }

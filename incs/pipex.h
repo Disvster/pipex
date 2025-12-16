@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 20:50:33 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/14 20:38:31 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/16 19:57:54 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "../libft/incs/libft.h"
 # include <stdio.h>
+# include <sys/wait.h>
 
 typedef struct s_cmd
 {
-	int		fd[2];
 	int		pid;
 	char	*path;
 	char	**args;
@@ -27,6 +27,7 @@ typedef struct s_cmd
 typedef struct s_pipex
 {
 	int		infile;
+	int		fds[2];
 	int		outfile;
 	char	**envp;
 	char	**argv;
@@ -36,9 +37,12 @@ typedef struct s_pipex
 }				t_pipex;
 
 void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp);
-void	parse_commands(t_pipex *pipex);
+void	exec_pipe(t_pipex *pipex);
+void	parse_commands(t_pipex *pipex, int i);
 t_cmd	*get_command(char *cmd_str, char **envp);
 char	*find_cmd_path(char *cmd, char **envp);
 char	*pipex_strjoin(char *path, char *cmd);
+void	exec_cmd1(t_pipex *pipex);
+void	exec_cmd2(t_pipex *pipex);
 
 #endif

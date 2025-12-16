@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 20:49:48 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/12 13:31:01 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/16 19:58:03 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	main(int ac, char **av, char **envp)
 	}
 	ft_bzero(&pipex, sizeof(t_pipex));
 	init_pipex(&pipex,  ac, av, envp);
-	parse_commands(&pipex);
+	exec_pipe(&pipex);
 	return (0);
 }

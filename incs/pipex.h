@@ -42,5 +42,6 @@ char	*find_cmd_path(char *cmd, char **envp);
 char	*pipex_strjoin(char *path, char *cmd);
 void	exec_cmd1(t_pipex *pipex);
 void	exec_cmd2(t_pipex *pipex);
+void	error_exit(t_pipex *pipex, t_cmd *cmd, int exit_code);
 
 #endif

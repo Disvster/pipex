@@ -20,7 +20,6 @@ void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp)
 	pipex->argv = av;
 	pipex->envp = envp;
 	pipex->cmd_count = ac - 3;
-	// if (!pipex->cmds)// TODO:
 }
 
 int	main(int ac, char **av, char **envp)

@@ -25,21 +25,19 @@ int	get_command(char *cmd_str, char **envp, t_cmd *cmd)
 	if (wc)
 		cmd->path = find_cmd_path(split_cmd[0], envp);
 	if (!cmd->path)
-		// return (free(split_cmd), NULL);// TODO:
-		return (-1);// TODO:
+		return (free_split(split_cmd), -1);// WARNING: might need ** @free_split
 	i = -1;
 	cmd->args = ft_calloc(wc + 1, sizeof(char *));
-	// if (!info->args)
-	// 	return (free(split_cmd, path),NULL)// TODO:
+	if (!cmd->args)
+		return (free_split(split_cmd), free(cmd->path), -1);
 	while (++i < wc && split_cmd[i])
 	{
 		cmd->args[i] = ft_strdup(split_cmd[i]);
-		// if (!info->args[i - 1])
-		// 	return (free(split_cmd, info-args, info->path),NULL)// TODO:
+		if (!cmd->args[i - 1])
+			return (free_split(split_cmd), free_split(cmd->args), -1);
 	}
 	cmd->args[i] = NULL;
-	// return (free(split_cmd), info);// TODO:
-	return (1);// TODO:
+	return (free_split(split_cmd), 1);
 }
 
 char	*find_cmd_path(char *cmd, char **envp)
@@ -59,20 +57,19 @@ char	*find_cmd_path(char *cmd, char **envp)
 	i = -1;
 	while (paths[++i])
 	{
-		if (ft_strchr(cmd, '/') != 0 && access(test, X_OK) == 0)// WARNING: this might not work
+		if (ft_strchr(cmd, '/') != 0 && access(test, X_OK) == 0)//WARNING:
 			break ;
 		test = pipex_strjoin(paths[i], cmd);
 		if (!test)
-			return (/*free_paths(paths)*/NULL);// TODO:
+			return (free_split(paths), NULL);
 		if (access(test, X_OK) == 0)
 			break ;
 		else if (paths[i + 1] == NULL)
-			// return(free(everything), */exit(127));
-			exit(127);// TODO:
+			return(free_split(paths), free(test), NULL);
+			// exit(127);
 		free(test);
 	}
-	//free_paths(paths)// TODO:
-	return (test);
+	return (free_split(paths), test);
 }
 
 char	*pipex_strjoin(char *path, char *cmd)
@@ -85,9 +82,8 @@ char	*pipex_strjoin(char *path, char *cmd)
 	if (!new_cmd)
 		return (NULL);
 	ft_strlcpy(new_cmd, path, ft_strlen(path) + 1);
-	// new_cmd[ft_strlcpy(new_cmd, path, ft_strlen(path))] = '/';// WARNING: this might not work
 	new_cmd[ft_strlen(new_cmd)] = '/';
 	ft_strlcpy(new_cmd + ft_strlen(path) + 1, cmd, ft_strlen(cmd) + 1);
-	ft_printf("new_cmd = %s\n", new_cmd);// HACK: db
+	// ft_printf("new_cmd = %s\n", new_cmd);// HACK: db
 	return (new_cmd);
 }

@@ -14,7 +14,10 @@
 
 void	error_exit(t_pipex *pipex, t_cmd *cmd, int exit_code)
 {
-	free
+	if (cmd->path)
+		free(cmd->path);
+	if (cmd->args)
+		free_split(cmd->args);
 	if (pipex->infile != -1)
 		close(pipex->infile);
 	if (pipex->outfile != -1)

@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 20:49:48 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/16 19:58:03 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/16 20:15:01 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp)
 	pipex->argv = av;
 	pipex->envp = envp;
 	pipex->cmd_count = ac - 3;
-	pipex->cmds = ft_calloc(pipex->cmd_count, sizeof(t_cmd));
 	// if (!pipex->cmds)// TODO:
 }
 

@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 20:50:33 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/16 20:03:25 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/16 20:15:17 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,11 @@ typedef struct s_pipex
 	char	**argv;
 	int		argc;
 	int		cmd_count;
-	t_cmd	*cmds;
 }				t_pipex;
 
 void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp);
 void	exec_pipe(t_pipex *pipex);
-void	parse_commands(t_pipex *pipex, int i);
-t_cmd	*get_command(char *cmd_str, char **envp);
+int		get_command(char *cmd_str, char **envp, t_cmd *cmd);
 char	*find_cmd_path(char *cmd, char **envp);
 char	*pipex_strjoin(char *path, char *cmd);
 void	exec_cmd1(t_pipex *pipex);

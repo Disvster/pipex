@@ -38,9 +38,9 @@ void	exec_cmd2(t_pipex *pipex)
 
 	if (get_command(pipex->argv[3], pipex->envp, &cmd) == -1)
 		error_exit(pipex, &cmd, 1);
-	if (dup2(pipex->fds[0], 0))
+	if (dup2(pipex->fds[0], 0) == -1)
 		error_exit(pipex, &cmd, 1);
-	if (dup2(pipex->outfile, 1))
+	if (dup2(pipex->outfile, 1) == -1)
 		error_exit(pipex, &cmd, 1);
 	close(pipex->outfile);
 	if (close(pipex->fds[0]) == -1)

@@ -51,10 +51,13 @@ char	*find_cmd_path(char *cmd, char **envp)
 	if (!*envp)
 		return (NULL);
 	paths = ft_split(*envp, ':');
-	paths[0] = ft_strchr(paths[0], '/');
+	if (ft_strncmp(paths[0], "PATH=", 5) == 0)
+		ft_memmove(paths[0], paths[0] + 5, ft_strlen(paths[0] + 5) + 1);
+	// paths[0] = ft_strchr(paths[0], '/');
 	if (!paths)
 		return (NULL);
 	i = -1;
+	// ft_printf("paths[0] = %s\n", paths[0]);// HACK: db
 	while (paths[++i])
 	{
 		if (ft_strchr(cmd, '/') != 0 && access(test, X_OK) == 0)//WARNING:

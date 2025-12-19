@@ -53,7 +53,6 @@ char	*find_cmd_path(char *cmd, char **envp)
 	paths = ft_split(*envp, ':');
 	if (ft_strncmp(paths[0], "PATH=", 5) == 0)
 		ft_memmove(paths[0], paths[0] + 5, ft_strlen(paths[0] + 5) + 1);
-	// paths[0] = ft_strchr(paths[0], '/');
 	if (!paths)
 		return (NULL);
 	i = -1;

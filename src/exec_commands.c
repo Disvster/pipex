@@ -14,8 +14,9 @@
 // TODO: handle errors on dup2 and execve
 void	exec_cmd1(t_pipex *pipex)
 {
-	t_cmd cmd;
+	t_cmd	cmd;
 
+	ft_bzero(&cmd, sizeof(t_cmd));
 	if (get_command(pipex->argv[2], pipex->envp, &cmd) == -1)
 		error_exit(pipex, &cmd, 1);
 	if (dup2(pipex->infile, 0) == -1)
@@ -36,6 +37,7 @@ void	exec_cmd2(t_pipex *pipex)
 {
 	t_cmd	cmd;
 
+	ft_bzero(&cmd, sizeof(t_cmd));
 	if (get_command(pipex->argv[3], pipex->envp, &cmd) == -1)
 		error_exit(pipex, &cmd, 1);
 	if (dup2(pipex->fds[0], 0) == -1)

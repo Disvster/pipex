@@ -18,8 +18,6 @@ int	get_command(char *cmd_str, char **envp, t_cmd *cmd)
 	int		i;
 	char	**split_cmd;
 
-	cmd->path = NULL;
-	cmd->args = NULL;
 	wc = count_words(cmd_str, ' ');
 	split_cmd = ft_split(cmd_str, ' ');
 	if (!split_cmd)
@@ -91,7 +89,7 @@ char	*pipex_strjoin(char *path, char *cmd)
 	size_t	path_len;
 
 	path_len = ft_strlen(path);
-	len =  path_len + ft_strlen(cmd) + 2;
+	len = path_len + ft_strlen(cmd) + 2;
 	new_cmd = ft_calloc(len, sizeof(char));
 	if (!new_cmd)
 		return (NULL);

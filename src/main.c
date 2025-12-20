@@ -33,7 +33,7 @@ int	main(int ac, char **av, char **envp)
 		return (1);
 	}
 	ft_bzero(&pipex, sizeof(t_pipex));
-	init_pipex(&pipex,  ac, av, envp);
+	init_pipex(&pipex, ac, av, envp);
 	exec_pipe(&pipex);
 	return (0);
 }

@@ -1,5 +1,14 @@
 # Pipex study notes & to-do list
 
+## 19/12/25
+
+is working but
+according to pipex tester:
+- [ ] not giving the right exit codes
+- [ ] does not output command not found
+- [ ] does not handle outfile's open error
+- [ ] does not handles execve errors    
+
 ## 04/12/25
 
 ### functions needed:

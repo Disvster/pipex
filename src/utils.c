@@ -28,3 +28,20 @@ void	error_exit(t_pipex *pipex, t_cmd *cmd, int exit_code)
 		exit(exit_code);
 	exit(exit_code);
 }
+
+char	*pipex_strjoin(char *path, char *cmd)
+{
+	char	*new_cmd;
+	size_t	len;
+	size_t	path_len;
+
+	path_len = ft_strlen(path);
+	len = path_len + ft_strlen(cmd) + 2;
+	new_cmd = ft_calloc(len, sizeof(char));
+	if (!new_cmd)
+		return (NULL);
+	ft_strlcpy(new_cmd, path, len);
+	new_cmd[path_len] = '/';
+	ft_strlcpy(new_cmd + path_len + 1, cmd, len - path_len - 1);
+	return (new_cmd);
+}

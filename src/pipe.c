@@ -16,7 +16,7 @@ static void	spawn_child2(t_pipex *pipex, pid_t *child2)
 {
 	*child2 = fork();
 	if (*child2 == -1)
-		return (perror("Fork2: "));
+		return (perror("Fork: "));
 	else if (*child2 == 0)
 		exec_cmd2(pipex);
 }
@@ -25,7 +25,7 @@ static void	spawn_child1(t_pipex *pipex, pid_t *child1)
 {
 	*child1 = fork();
 	if (*child1 == -1)
-		return (perror("Fork1: "));
+		return (perror("Fork: "));
 	else if (*child1 == 0)
 		exec_cmd1(pipex);
 }

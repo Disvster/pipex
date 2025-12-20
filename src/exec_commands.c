@@ -30,7 +30,7 @@ void	exec_cmd1(t_pipex *pipex)
 	if (close(pipex->fds[1]) == -1)
 		error_exit(pipex, &cmd, 1);
 	if (execve(cmd.path, cmd.args, pipex->envp) == -1)
-		error_exit(pipex, &cmd, 127);
+		error_exit(pipex, &cmd, 1);
 }
 
 void	exec_cmd2(t_pipex *pipex)
@@ -48,5 +48,5 @@ void	exec_cmd2(t_pipex *pipex)
 	if (close(pipex->fds[0]) == -1)
 		error_exit(pipex, &cmd, 1);
 	if (execve(cmd.path, cmd.args, pipex->envp))
-		error_exit(pipex, &cmd, 127);
+		error_exit(pipex, &cmd, 1);
 }

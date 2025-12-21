@@ -1,5 +1,9 @@
 # Pipex study notes & to-do list
 
+##
+print functions check for forbidden command":
+- `nm -g ./pipex | grep U`
+
 ## 19/12/25
 
 is working but

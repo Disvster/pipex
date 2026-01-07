@@ -12,6 +12,27 @@
 
 #include "../incs/pipex.h"
 
+static int	create_args(t_cmd *cmd, char **split_cmd, int wc);
+
+int	get_command(char *cmd_str, char **envp, t_cmd *cmd)
+{
+	int		wc;
+	char	**split_cmd;
+
+	wc = count_words(cmd_str, ' ');
+	split_cmd = ft_split(cmd_str, ' ');
+	if (!split_cmd)
+		return (-1);
+	if (wc)
+		cmd->path = find_cmd_path(split_cmd[0], envp);
+	if (!cmd->path)
+		return (free_split(split_cmd), -1);
+	if (create_args(cmd, split_cmd, wc) == -1)
+		return (free_split(split_cmd), free(cmd->path), -1);
+	free_split(split_cmd);
+	return (1);
+}
+
 static int	create_args(t_cmd *cmd, char **split_cmd, int wc)
 {
 	int	i;
@@ -33,25 +54,6 @@ static int	create_args(t_cmd *cmd, char **split_cmd, int wc)
 		i++;
 	}
 	cmd->args[i] = NULL;
-	return (1);
-}
-
-int	get_command(char *cmd_str, char **envp, t_cmd *cmd)
-{
-	int		wc;
-	char	**split_cmd;
-
-	wc = count_words(cmd_str, ' ');
-	split_cmd = ft_split(cmd_str, ' ');
-	if (!split_cmd)
-		return (-1);
-	if (wc)
-		cmd->path = find_cmd_path(split_cmd[0], envp);
-	if (!cmd->path)
-		return (free_split(split_cmd), -1);
-	if (create_args(cmd, split_cmd, wc) == -1)
-		return (free_split(split_cmd), free(cmd->path), -1);
-	free_split(split_cmd);
 	return (1);
 }
 
